@@ -5,109 +5,109 @@
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.0+-green.svg)](https://scikit-learn.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Dự án này so sánh toàn diện 7 thuật toán machine learning để dự đoán ung thư vú, sử dụng **Wisconsin Breast Cancer Dataset**. Với trọng tâm là ứng dụng y tế, dự án cung cấp phân tích lỗi Type I/Type II và CAP Analysis để đảm bảo độ an toàn và hiệu quả trong chẩn đoán.
+This project provides a comprehensive comparison of 7 machine learning algorithms for breast cancer prediction using the **Wisconsin Breast Cancer Dataset**. With a focus on medical applications, the project includes Type I/Type II error analysis and CAP Analysis to ensure safety and effectiveness in diagnosis.
 
-## 📋 Mục lục
+## 📋 Table of Contents
 
-- [Tổng quan](#tổng-quan)
-- [Tính năng](#tính-năng)
+- [Overview](#overview)
+- [Features](#features)
 - [Dataset Structure Explanation](#dataset-structure-explanation)
-- [Cấu trúc dự án](#cấu-trúc-dự-án)
-- [Cài đặt](#cài-đặt)
-- [Sử dụng](#sử-dụng)
-- [Hiệu suất thuật toán](#hiệu-suất-thuật-toán)
-- [Phân tích y tế](#phân-tích-y-tế)
-- [Tùy chỉnh](#tùy-chỉnh)
-- [Đóng góp](#đóng-góp)
-- [Giấy phép](#giấy-phép)
-- [Liên hệ](#liên-hệ)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Algorithm Performance](#algorithm-performance)
+- [Medical Analysis](#medical-analysis)
+- [Customization](#customization)
+- [Contribution](#contribution)
+- [License](#license)
+- [Contact](#contact)
 
-## 🎯 Tổng quan
+## 🎯 Overview
 
-Dự án này triển khai và so sánh các thuật toán machine learning để phân loại ung thư vú thành **lành tính (benign)** hoặc **ác tính (malignant)**. Được thiết kế với kiến trúc modular, dự án nhấn mạnh vào:
+This project implements and compares machine learning algorithms to classify breast cancer as **benign** or **malignant**. Designed with a modular architecture, the project emphasizes:
 
-- **Hiệu suất tối ưu**: So sánh 7 thuật toán với các metric chuyên sâu.
-- **An toàn y tế**: Phân tích lỗi Type I (False Positive) và Type II (False Negative).
-- **Triển khai lâm sàng**: Đánh giá khả năng áp dụng thực tế trong y tế.
+- **Optimal Performance**: Comparison of 7 algorithms with in-depth metrics.
+- **Medical Safety**: Analysis of Type I (False Positive) and Type II (False Negative) errors.
+- **Clinical Deployment**: Evaluation of real-world applicability in healthcare.
 
-Dataset được sử dụng là **Wisconsin Breast Cancer Dataset** từ UCI Machine Learning Repository, với 9 đặc trưng và 2 lớp (benign: 2, malignant: 4).
+The dataset used is the **Wisconsin Breast Cancer Dataset** from the UCI Machine Learning Repository, featuring 9 attributes and 2 classes (benign: 2, malignant: 4).
 
-## ✨ Tính năng
+## ✨ Features
 
 ### 🔬 Machine Learning
-- **7 thuật toán**: Logistic Regression, KNN, SVM (Linear & RBF), Decision Tree, Random Forest, Naive Bayes.
-- **Preprocessing thống nhất**: Feature scaling và xử lý dữ liệu đồng bộ.
-- **Tối ưu hóa hyperparameters**: Tìm K tối ưu cho KNN, so sánh kernel cho SVM.
-- **Cross-validation**: Đánh giá hiệu suất ổn định với 10-fold CV.
+- **7 Algorithms**: Logistic Regression, KNN, SVM (Linear & RBF), Decision Tree, Random Forest, Naive Bayes.
+- **Unified Preprocessing**: Feature scaling and consistent data processing.
+- **Hyperparameter Optimization**: Optimal K for KNN, kernel comparison for SVM.
+- **Cross-Validation**: Stable performance evaluation with 10-fold CV.
 
 ### 📊 Visualization
-- **Confusion Matrix**: Hiển thị chi tiết lỗi phân loại.
-- **Decision Boundary**: Biên quyết định 2D cho từng thuật toán.
-- **Feature Importance**: Phân tích mức độ quan trọng của các đặc trưng.
-- **CAP Curves**: Đánh giá khả năng phân biệt trong y tế.
-- **Error Analysis Plots**: So sánh Type I/Type II errors.
+- **Confusion Matrix**: Detailed classification error visualization.
+- **Decision Boundary**: 2D decision boundary for each algorithm.
+- **Feature Importance**: Analysis of feature significance.
+- **CAP Curves**: Evaluation of discriminative ability in medical contexts.
+- **Error Analysis Plots**: Comparison of Type I/Type II errors.
 
 ### 🏥 Medical Analysis
-- **Type I/II Error Analysis**: Đánh giá lỗi dương tính giả và âm tính giả.
-- **CAP Analysis**: Cumulative Accuracy Profile cho đánh giá y tế.
-- **Clinical Recommendations**: Hướng dẫn triển khai dựa trên an toàn và hiệu quả.
+- **Type I/II Error Analysis**: Evaluation of false positives and false negatives.
+- **CAP Analysis**: Cumulative Accuracy Profile for medical evaluation.
+- **Clinical Recommendations**: Guidelines for deployment based on safety and efficacy.
 
 ### 💾 Model Persistence
-- **Lưu/tải model**: Lưu models với metadata (accuracy, hyperparameters, timestamp).
-- **Batch processing**: Quản lý nhiều models cùng lúc.
-- **Production-ready**: Hàm dự đoán dễ tích hợp vào hệ thống y tế.
+- **Save/Load Models**: Save models with metadata (accuracy, hyperparameters, timestamp).
+- **Batch Processing**: Manage multiple models simultaneously.
+- **Production-Ready**: Prediction functions easily integrated into healthcare systems.
 
 ## 📊 Dataset Structure Explanation
 
 **🎯 Dependent Variable (Target Variable):**
-- **`Class`**: Phân loại ung thư vú
-  - **2**: Benign (Lành tính) - Không có ung thư
-  - **4**: Malignant (Ác tính) - Có ung thư
+- **`Class`**: Breast cancer classification
+  - **2**: Benign - No cancer
+  - **4**: Malignant - Cancer present
 
-**🔬 Independent Variables (Features):** 9 đặc trưng y tế từ mẫu tế bào
+**🔬 Independent Variables (Features):** 9 medical features from cell samples
 
-1. **`clump_thickness`**: Độ dày cụm tế bào (1-10)
-   - Giá trị cao → Nghi ngờ ác tính
+1. **`clump_thickness`**: Clump thickness (1-10)
+   - Higher values → Suspected malignancy
    
-2. **`uniform_cell_size`**: Tính đồng đều kích thước tế bào (1-10)
-   - Tế bào ác tính thường có kích thước không đồng đều
+2. **`uniform_cell_size`**: Uniformity of cell size (1-10)
+   - Malignant cells often have non-uniform sizes
    
-3. **`uniform_cell_shape`**: Tính đồng đều hình dạng tế bào (1-10)
-   - Tế bào ác tính thường có hình dạng bất thường
+3. **`uniform_cell_shape`**: Uniformity of cell shape (1-10)
+   - Malignant cells often have irregular shapes
    
-4. **`marginal_adhesion`**: Độ bám dính biên tế bào (1-10)
-   - Tế bào ác tính có xu hướng mất khả năng bám dính
+4. **`marginal_adhesion`**: Marginal adhesion of cells (1-10)
+   - Malignant cells tend to lose adhesion
    
-5. **`single_epithelial_cell_size`**: Kích thước tế bào biểu mô đơn (1-10)
-   - Liên quan đến sự phát triển bất thường của tế bào
+5. **`single_epithelial_cell_size`**: Single epithelial cell size (1-10)
+   - Related to abnormal cell growth
    
-6. **`bare_nuclei`**: Nhân trần (không có tế bào chất bao quanh) (1-10)
-   - Đặc trưng thường thấy ở ung thư ác tính
+6. **`bare_nuclei`**: Bare nuclei (no surrounding cytoplasm) (1-10)
+   - Common in malignant cancers
    
-7. **`bland_chromatin`**: Cấu trúc nhiễm sắc thể (1-10)
-   - Tế bào ác tính có cấu trúc nhiễm sắc thể bất thường
+7. **`bland_chromatin`**: Chromatin structure (1-10)
+   - Malignant cells have abnormal chromatin structure
    
-8. **`normal_nucleoli`**: Nhân con bình thường (1-10)
-   - Tế bào ác tính có nhân con to và nổi bật
+8. **`normal_nucleoli`**: Normal nucleoli (1-10)
+   - Malignant cells have larger, prominent nucleoli
    
-9. **`mitoses`**: Quá trình phân bào (1-10)
-   - Tế bào ác tính có tỷ lệ phân bào cao
+9. **`mitoses`**: Mitotic activity (1-10)
+   - Malignant cells have higher mitotic rates
 
-**📈 Tầm Quan Trọng trong Machine Learning:**
-- **Features (X)**: 9 đặc trưng y tế → Dữ liệu đầu vào để dự đoán
-- **Target (y)**: Phân loại ung thư → Kết quả cần dự đoán
-- **Mục tiêu**: Học từ features để dự đoán chính xác target
+**📈 Importance in Machine Learning:**
+- **Features (X)**: 9 medical features → Input data for prediction
+- **Target (y)**: Cancer classification → Outcome to predict
+- **Objective**: Learn from features to accurately predict the target
 
-## 📁 Cấu trúc dự án
+## 📁 Project Structure
 
 ```
 ML_BreastCancerWisconsin_Prediction/
 │
 ├── 📊 Dataset/
-│   ├── breast_cancer_wisconsin.csv      # Dataset chính
-│   ├── breast_cancer.csv                # Dataset phụ
-│   ├── Source.txt                       # Thông tin nguồn
-│   └── raw_data/                        # Dữ liệu gốc
+│   ├── breast_cancer_wisconsin.csv      # Main dataset
+│   ├── breast_cancer.csv                # Secondary dataset
+│   ├── Source.txt                       # Source information
+│   └── raw_data/                        # Raw data
 │       ├── breast-cancer-wisconsin.data
 │       ├── breast-cancer-wisconsin.names
 │       ├── wdbc.data
@@ -116,20 +116,20 @@ ML_BreastCancerWisconsin_Prediction/
 │       └── wpbc.names
 │
 ├── 💻 Codes/
-│   ├── 📓 ml_models_comparison.ipynb    # Notebook chính
-│   ├── 🛠️ utils/                        # Package tiện ích
-│   │   ├── __init__.py                  # Khởi tạo package
-│   │   ├── data_processor.py            # Xử lý dữ liệu
-│   │   ├── model_trainer.py             # Huấn luyện model
+│   ├── 📓 ml_models_comparison.ipynb    # Main notebook
+│   ├── 🛠️ utils/                        # Utility package
+│   │   ├── __init__.py                  # Package initialization
+│   │   ├── data_processor.py            # Data processing
+│   │   ├── model_trainer.py             # Model training
 │   │   ├── visualizer.py                # Visualization
-│   │   ├── model_persistence.py         # Lưu/tải model
-│   │   ├── model_comparison.py          # So sánh model
-│   │   ├── medical_error_analysis.py    # Phân tích lỗi y tế
+│   │   ├── model_persistence.py         # Model save/load
+│   │   ├── model_comparison.py          # Model comparison
+│   │   ├── medical_error_analysis.py    # Medical error analysis
 │   │   └── cap_analysis.py              # CAP analysis
-│   ├── DataCrawler.py                   # Script thu thập dữ liệu
-│   └── logistic_regression.ipynb        # Notebook riêng cho Logistic Regression
+│   ├── DataCrawler.py                   # Data crawling script
+│   └── logistic_regression.ipynb        # Logistic Regression notebook
 │
-├── 🤖 Models/                           # Thư mục lưu models
+├── 🤖 Models/                           # Model storage
 │   ├── Logistic_Regression.pkl
 │   ├── KNN.pkl
 │   ├── SVM_Linear.pkl
@@ -137,42 +137,42 @@ ML_BreastCancerWisconsin_Prediction/
 │   ├── Decision_Tree.pkl
 │   ├── Random_Forest.pkl
 │   ├── Naive_Bayes.pkl
-│   └── metadata/                        # Metadata của models
+│   └── metadata/                        # Model metadata
 │
 ├── 📜 requirements.txt                  # Dependencies
-└── 📖 README.md                         # File này
+└── 📖 README.md                         # This file
 ```
 
-## 🚀 Cài đặt
+## 🚀 Installation
 
-### Yêu cầu
+### Requirements
 - Python 3.8+
 - Jupyter Notebook/JupyterLab
-- Git (tùy chọn)
+- Git (optional)
 
-### Bước 1: Clone repository
+### Step 1: Clone the Repository
 ```bash
 git clone https://github.com/your-username/ML_BreastCancerWisconsin_Prediction.git
 cd ML_BreastCancerWisconsin_Prediction
 ```
 
-### Bước 2: Tạo virtual environment
+### Step 2: Create a Virtual Environment
 ```bash
-# Tạo virtual environment
+# Create virtual environment
 python -m venv venv
 
-# Kích hoạt (Windows)
+# Activate (Windows)
 venv\Scripts\activate
-# Kích hoạt (macOS/Linux)
+# Activate (macOS/Linux)
 source venv/bin/activate
 ```
 
-### Bước 3: Cài đặt dependencies
+### Step 3: Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### Bước 4: Chạy Jupyter Notebook
+### Step 4: Run Jupyter Notebook
 ```bash
 cd Codes
 jupyter notebook ml_models_comparison.ipynb
@@ -191,23 +191,23 @@ plotly>=5.0.0
 ipywidgets>=7.6.0
 ```
 
-## 💡 Sử dụng
+## 💡 Usage
 
 ### Quick Start
-1. Mở file `ml_models_comparison.ipynb`.
-2. Chạy tất cả cells để xem kết quả so sánh và visualizations.
-3. Xem output để chọn model tốt nhất (Random Forest được khuyến nghị).
+1. Open `ml_models_comparison.ipynb`.
+2. Run all cells to view comparison results and visualizations.
+3. Review outputs to select the best model (Random Forest recommended).
 
-### Ví dụ sử dụng
+### Usage Example
 ```python
 # Import modules
 from utils import *
 
-# Load và preprocess dữ liệu
+# Load and preprocess data
 dataset, feature_names = load_and_explore_data("../Dataset/breast_cancer_wisconsin.csv")
 X_train, X_test, y_train, y_test, scaler = preprocess_data(dataset, feature_names)
 
-# Train và đánh giá model
+# Train and evaluate model
 from sklearn.ensemble import RandomForestClassifier
 model = RandomForestClassifier(n_estimators=100, random_state=0)
 results = train_and_evaluate_model(model, "Random Forest", X_train, X_test, y_train, y_test)
@@ -216,20 +216,20 @@ results = train_and_evaluate_model(model, "Random Forest", X_train, X_test, y_tr
 plot_confusion_matrix(results)
 plot_decision_boundary(model, "Random Forest", X_train, y_train, feature_names)
 
-# Lưu model
+# Save model
 save_model(model, results, "Random_Forest", save_dir="../Models")
 ```
 
-### Tải và sử dụng model đã lưu
+### Load and Use Saved Model
 ```python
-# Tải model
+# Load model
 loaded_model, metadata = load_model_by_name("Random_Forest", save_dir="../Models")
 prediction = loaded_model.predict(new_data)
 ```
 
-## 🤖 Hiệu suất thuật toán
+## 🤖 Algorithm Performance
 
-| Thuật toán         | Accuracy | Precision | Recall | F1-Score | Training Time |
+| Algorithm           | Accuracy | Precision | Recall | F1-Score | Training Time |
 |--------------------|----------|-----------|--------|----------|---------------|
 | Random Forest      | 97.08%   | 97.15%    | 97.08% | 97.09%   | 0.029s        |
 | Naive Bayes        | 94.16%   | 94.65%    | 94.16% | 94.22%   | 0.000s        |
@@ -239,88 +239,88 @@ prediction = loaded_model.predict(new_data)
 | Decision Tree      | 95.62%   | 95.62%    | 95.62% | 95.62%   | 0.004s        |
 | KNN                | 94.16%   | 94.15%    | 94.16% | 94.13%   | 0.004s        |
 
-### Ghi chú
-- **Random Forest** là model tốt nhất với accuracy 97.08% và Type II Error thấp nhất (0.02).
-- **Naive Bayes** có thời gian huấn luyện nhanh nhất (0.000s).
-- **Logistic Regression** và **SVM** có tính giải thích cao, phù hợp với môi trường y tế.
+### Notes
+- **Random Forest** is the best model with 97.08% accuracy and the lowest Type II Error (0.02).
+- **Naive Bayes** has the fastest training time (0.000s).
+- **Logistic Regression** and **SVM** offer high interpretability, suitable for medical environments.
 
-## 🏥 Phân tích y tế
+## 🏥 Medical Analysis
 
 ### Type I vs Type II Errors
-- **Type I (False Positive)**: Chẩn đoán nhầm lành tính thành ác tính.
-  - **Hậu quả**: Gây lo lắng, cần xét nghiệm thêm.
-  - **Tỷ lệ thấp nhất**: Random Forest (0.015).
-- **Type II (False Negative)**: Chẩn đoán nhầm ác tính thành lành tính.
-  - **Hậu quả**: Bỏ sót ung thư, rất nguy hiểm.
-  - **Tỷ lệ thấp nhất**: Random Forest (0.020).
+- **Type I (False Positive)**: Misdiagnosing benign as malignant.
+  - **Impact**: Causes anxiety, requires additional tests.
+  - **Lowest Rate**: Random Forest (0.015).
+- **Type II (False Negative)**: Misdiagnosing malignant as benign.
+  - **Impact**: Missing cancer, highly dangerous.
+  - **Lowest Rate**: Random Forest (0.020).
 
 ### CAP Analysis
-- **Accuracy Ratio**: Tất cả models đạt ~1.0 (Excellent).
-- **CAP AUC**: Random Forest cao nhất (81.285).
-- **Clinical Implication**: Random Forest có khả năng phân biệt tốt nhất.
+- **Accuracy Ratio**: All models achieve ~1.0 (Excellent).
+- **CAP AUC**: Random Forest highest (81.285).
+- **Clinical Implication**: Random Forest offers the best discriminative ability.
 
-### Khuyến nghị lâm sàng
-- **Random Forest**: Lựa chọn an toàn nhất với Type II Error thấp nhất và CAP AUC cao nhất.
-- **Logistic Regression**: Phù hợp khi cần giải thích rõ ràng cho bác sĩ.
-- **SVM**: Ổn định với dữ liệu mới, phù hợp cho triển khai lâu dài.
+### Clinical Recommendations
+- **Random Forest**: Safest choice with the lowest Type II Error and highest CAP AUC.
+- **Logistic Regression**: Suitable for clear interpretability for clinicians.
+- **SVM**: Stable with new data, ideal for long-term deployment.
 
-## 🔧 Tùy chỉnh
+## 🔧 Customization
 
-### Thêm thuật toán mới
+### Add New Algorithm
 ```python
-# Trong utils/model_trainer.py
+# In utils/model_trainer.py
 def train_new_algorithm(X_train, X_test, y_train, y_test):
     model = YourNewModel()
     return train_and_evaluate_model(model, "New Model", X_train, X_test, y_train, y_test)
 ```
 
-### Thêm visualization
+### Add Visualization
 ```python
-# Trong utils/visualizer.py
+# In utils/visualizer.py
 def plot_custom_visualization(data, title):
-    # Thêm visualization mới
+    # Add new visualization
     pass
 ```
 
-### Thêm metric mới
+### Add New Metric
 ```python
-# Trong utils/model_comparison.py
+# In utils/model_comparison.py
 def calculate_new_metric(y_true, y_pred):
     return new_score
 ```
 
-## 🤝 Đóng góp
+## 🤝 Contribution
 
-### Cách đóng góp
-1. Fork repository.
-2. Tạo branch mới (`git checkout -b feature/YourFeature`).
+### How to Contribute
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/YourFeature`).
 3. Commit changes (`git commit -m 'Add YourFeature'`).
-4. Push to branch (`git push origin feature/YourFeature`).
-5. Tạo Pull Request.
+4. Push to the branch (`git push origin feature/YourFeature`).
+5. Create a Pull Request.
 
-### Tiêu chuẩn code
-- Tuân theo **PEP 8**.
-- Thêm **docstrings** cho tất cả functions.
-- Sử dụng **type hints** khi có thể.
-- Xử lý lỗi đầy đủ.
+### Code Standards
+- Follow **PEP 8**.
+- Add **docstrings** to all functions.
+- Use **type hints** where possible.
+- Include comprehensive error handling.
 
-### Ý tưởng đóng góp
-- Thêm thuật toán Deep Learning (e.g., TensorFlow/Keras).
-- Tích hợp API thực thi thời gian thực.
-- Thêm visualizations nâng cao (e.g., 3D plots).
-- Tự động hóa hyperparameter tuning.
+### Contribution Ideas
+- Add Deep Learning algorithms (e.g., TensorFlow/Keras).
+- Integrate real-time API execution.
+- Add advanced visualizations (e.g., 3D plots).
+- Automate hyperparameter tuning.
 
-## 🐛 Báo lỗi
+## 🐛 Bug Reporting
 
-Vui lòng tạo issue với:
-- Mô tả lỗi chi tiết.
-- Môi trường (OS, Python version, dependencies).
-- Cách tái hiện lỗi.
-- Kết quả mong đợi.
+Please create an issue with:
+- Detailed bug description.
+- Environment (OS, Python version, dependencies).
+- Steps to reproduce the bug.
+- Expected outcome.
 
-## 📝 Giấy phép
+## 📝 License
 
-Dự án được phân phối dưới **MIT License**:
+This project is distributed under the **MIT License**:
 
 ```
 MIT License
@@ -346,23 +346,23 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-## 📞 Liên hệ
+## 📞 Contact
 
 - **GitHub**: [Your GitHub Profile](https://github.com/your-username)
 - **Email**: your.email@example.com
 - **LinkedIn**: [Your LinkedIn](https://linkedin.com/in/your-profile)
 
-## 🙏 Ghi nhận
+## 🙏 Acknowledgments
 
 - **Wisconsin Breast Cancer Dataset**: UCI Machine Learning Repository.
-- **scikit-learn**: Thư viện machine learning mạnh mẽ.
-- **Jupyter**: Môi trường tương tác tuyệt vời.
-- **Matplotlib & Seaborn**: Visualization chất lượng cao.
+- **scikit-learn**: Powerful machine learning library.
+- **Jupyter**: Excellent interactive environment.
+- **Matplotlib & Seaborn**: High-quality visualizations.
 
 ---
 
-⭐ **Nếu dự án hữu ích, hãy cho một star!** ⭐
+⭐ **If you find this project helpful, please give it a star!** ⭐
 
-**Lưu ý**: Đây là dự án nghiên cứu và giáo dục. Không sử dụng để thay thế chẩn đoán y tế chuyên nghiệp.
+**Note**: This is a research and educational project. Do not use it as a substitute for professional medical diagnosis.
 
 ---
