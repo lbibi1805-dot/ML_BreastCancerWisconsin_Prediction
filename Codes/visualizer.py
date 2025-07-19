@@ -38,7 +38,7 @@ def plot_decision_boundary(model, model_name, X_train, y_train, feature_names, f
     x_min, x_max = X_set[:, 0].min() - 1, X_set[:, 0].max() + 1
     y_min, y_max = X_set[:, 1].min() - 1, X_set[:, 1].max() + 1
     xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
-                         np.arange(y_min, y_max, h))
+                        np.arange(y_min, y_max, h))
     
     # Train model on 2D data
     model_2d = type(model)(**model.get_params()) if hasattr(model, 'get_params') else type(model)()
@@ -51,12 +51,16 @@ def plot_decision_boundary(model, model_name, X_train, y_train, feature_names, f
     
     plt.contourf(xx, yy, Z, alpha=0.75, cmap=ListedColormap(['#FA8072', '#1E90FF']))
     
-    # Plot data points
+    # Plot data points - handle original (2,4) labels correctly
+    unique_classes = np.unique(y_set)
     colors = ['#FA8072', '#1E90FF']
-    for i, color in enumerate(colors):
-        idx = np.where(y_set == i)
-        plt.scatter(X_set[idx, 0], X_set[idx, 1], c=color, 
-                   label=f'Class {i}', edgecolors='black', alpha=0.8)
+    class_names = ['Benign', 'Malignant']
+    
+    for i, cls in enumerate(unique_classes):
+        mask = (y_set == cls)
+        plt.scatter(X_set[mask, 0], X_set[mask, 1], c=colors[i], 
+                   label=f'{class_names[i]} (Class {cls})', 
+                   edgecolors='black', alpha=0.8, s=50)
     
     plt.xlabel(f'Feature {feature_indices[0]+1} ({feature_names[feature_indices[0]]})')
     plt.ylabel(f'Feature {feature_indices[1]+1} ({feature_names[feature_indices[1]]})')
