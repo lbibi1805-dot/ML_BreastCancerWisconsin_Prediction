@@ -246,8 +246,13 @@ def create_performance_radar_chart(comparison_df, figsize=(12, 8)):
     
     colors = plt.cm.Set3(np.linspace(0, 1, len(comparison_df)))
     
-    for i, (_, row) in enumerate(comparison_df.iterrows()):
-        values = [row[metric] for metric in metrics]
+    for i, (idx, row) in enumerate(comparison_df.iterrows()):
+        values = []
+        for metric in metrics:
+            if metric == 'Speed':
+                values.append(normalized_data.loc[idx, 'Speed'])
+            else:
+                values.append(row[metric])
         values += values[:1]  # Complete the circle
         
         ax.plot(angles, values, 'o-', linewidth=2, label=row['Model'], color=colors[i])

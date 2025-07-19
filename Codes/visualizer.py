@@ -185,12 +185,12 @@ def plot_tree_models_comparison(dt_importance, rf_importance, dt_results, rf_res
     plt.figure(figsize=(15, 10))
 
     plt.subplot(2, 2, 1)
-    plt.bar(dt_importance['Feature'][:10], dt_importance['DT_Importance'][:10])
+    plt.bar(dt_importance['Feature'][:10], dt_importance['Importance'][:10])
     plt.title('Decision Tree - Top 10 Feature Importance')
     plt.xticks(rotation=45, ha='right')
 
     plt.subplot(2, 2, 2)
-    plt.bar(rf_importance['Feature'][:10], rf_importance['RF_Importance'][:10])
+    plt.bar(rf_importance['Feature'][:10], rf_importance['Importance'][:10])
     plt.title('Random Forest - Top 10 Feature Importance')
     plt.xticks(rotation=45, ha='right')
 
