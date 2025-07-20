@@ -1,0 +1,38 @@
+# Core ML Libraries (Updated for v2.0)
+numpy>=1.21.0
+pandas>=1.3.0
+scikit-learn>=1.0.0
+
+# Visualization
+matplotlib>=3.4.0
+seaborn>=0.11.0
+plotly>=5.0.0
+
+# Model Persistence  
+joblib>=1.1.0
+
+# Jupyter Notebooks
+jupyter>=1.0.0
+notebook>=6.4.0
+
+# Web deployment (Updated)
+streamlit>=1.10.0
+
+# Development tools
+pytest>=6.2.0
+
+# Additional dependencies for v2.0
+# For enhanced visualizations in Streamlit
+plotly-express>=0.4.1
+
+# For better data handling
+openpyxl>=3.0.0
+
+# API Server deployment
+flask>=3.0.0
+flask-cors>=4.0.0
+gunicorn>=21.2.0
+
+# Version info
+# Updated: July 2025
+# Features: Complete 9-feature support, Enhanced UI, Medical-grade predictions
