@@ -2,22 +2,71 @@
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange.svg)](https://jupyter.org/)
-[![scikit-learn](https://img.shields.io/badge/scikit--learn-1.0+-green.svg)](https://scikit-learn.org/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-1.0+-gree```
 
-This project provides a comprehensive comparison of 7 machine learning algorithms for breast cancer prediction using the **Wisconsin Breast Cancer Dataset**. With a focus on medical applications, the project includes Type I/Type II error analysis and CAP Analysis to ensure safety and effectiveness in diagnosis.
+## 🏆 Algorithm Performance
+
+**Updated Performance Results (Latest Training - July 2025)**
+
+| Algorithm | Test Accuracy | F1-Score | Precision | Recall | Training Time | Status |
+|-----------|---------------|----------|-----------|---------|---------------|---------|
+| **🥇 KNN (k=3)** | **97.08%** | **97.09%** | **97.14%** | **97.08%** | 0.011s | ✅ **DEPLOYED** |
+| 🥈 Random Forest | 97.08% | 96.77% | 97.14% | 97.08% | 0.150s | ✅ Available |
+| 🥉 Logistic Regression | 96.35% | 95.83% | 96.00% | 96.35% | 0.020s | ✅ Available |
+| SVM (RBF) | 96.35% | 95.83% | 96.00% | 96.35% | 0.080s | ✅ Available |
+| SVM (Linear) | 95.62% | 94.59% | 95.24% | 95.62% | 0.010s | ✅ Available |
+| Decision Tree | 95.62% | 94.59% | 95.24% | 95.62% | 0.003s | ✅ Available |
+| Naive Bayes | 94.89% | 93.88% | 94.59% | 94.89% | 0.002s | ✅ Available |
+
+### 🎯 Why KNN Was Chosen for Deployment
+
+1. **Highest Accuracy**: Tied for best test accuracy (97.08%)
+2. **Excellent F1-Score**: Best F1-score (97.09%) indicating balanced precision/recall
+3. **Fast Training**: Very quick training time (0.011s)
+4. **Stable Performance**: Consistent results across multiple runs
+5. **Medical Safety**: Good balance of Type I/Type II error rates
+6. **Interpretability**: Easy to explain to medical professionals
+
+### 📊 Confusion Matrix (KNN - Deployed Model)
+```
+                Predicted
+                Benign  Malignant
+Actual Benign     84      3
+       Malignant   1     49
+```
+
+**Key Metrics:**
+- **Type I Error (False Positive)**: 3/87 = 3.45% - Benign classified as Malignant
+- **Type II Error (False Negative)**: 1/50 = 2.00% - Malignant classified as Benign
+- **Sensitivity (Recall)**: 49/50 = 98.00% - Correctly identified malignant cases
+- **Specificity**: 84/87 = 96.55% - Correctly identified benign casesvg)](https://scikit-learn.org/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![API](https://img.shields.io/badge/API-Live-brightgreen.svg)](https://api-deploy-ml-breastcancer-wisconsin.onrender.com)
+
+This project provides a comprehensive comparison of 7 machine learning algorithms for breast cancer prediction using the **Wisconsin Breast Cancer Dataset**. With a focus on medical applications, the project includes Type I/Type II error analysis, CAP Analysis, and **live API deployment** for real-world usage.
+
+## 🚀 Live API Available
+
+**Production API**: https://api-deploy-ml-breastcancer-wisconsin.onrender.com
+- **Best Model**: KNN (k=3) with 97.08% accuracy deployed
+- **Real-time predictions** via REST API
+- **React/Express ready** with CORS support
+
+```bash
+# Test the live API
+curl -X POST https://api-deploy-ml-breastcancer-wisconsin.onrender.com/predict \
+  -H "Content-Type: application/json" \
+  -d '{"features": [2, 1, 1, 1, 2, 1, 2, 1, 1]}'
+```
 
 ## 📋 Table of Contents
 
-- [Overview](#overview)
-- [Features](#features)
-- [Dataset Structure Explanation](#dataset-structure-explanation)
-- [Project Structure](#project-structure)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Algorithm Performance](#algorithm-performance)
-- [Medical Analysis](#medical-analysis)
-- [Customization](#customization)
+- [🚀 Live API Usage](#-live-api-usage)
+- [🎯 Model Performance](#-model-performance) 
+- [📊 Dataset Information](#-dataset-information)
+- [💻 Local Development](#-local-development)
+- [🏥 Medical Analysis](#-medical-analysis)
+- [🤝 Contributing](#-contributing)
 - [Contribution](#contribution)
 - [License](#license)
 - [Contact](#contact)
@@ -116,23 +165,46 @@ ML_BreastCancerWisconsin_Prediction/
 │       └── wpbc.names
 │
 ├── 💻 Codes/
-│   ├── 📓 ml_models_comparison.ipynb    # Main notebook
-│   ├── 🛠️ utils/                        # Utility package
+│   ├── 📓 ml_models_comparison.ipynb    # Complete model comparison & analysis
+│   ├── 📓 knn_neighbours.ipynb          # KNN implementation (DEPLOYED MODEL)
+│   ├── 📓 random_forest_classification.ipynb
+│   ├── 📓 logistic_regression.ipynb
+│   ├── 📓 SVM.ipynb & kernel_svm.ipynb
+│   ├── � decision_tree.ipynb
+│   ├── 🌐 streamlit_app.py              # Streamlit web interface
+│   ├── �🛠️ utils/                        # Utility package
 │   │   ├── __init__.py                  # Package initialization
-│   │   ├── data_processor.py            # Data processing
-│   │   ├── model_trainer.py             # Model training
-│   │   ├── visualizer.py                # Visualization
-│   │   ├── model_persistence.py         # Model save/load
-│   │   ├── model_comparison.py          # Model comparison
-│   │   ├── medical_error_analysis.py    # Medical error analysis
-│   │   └── cap_analysis.py              # CAP analysis
-│   ├── DataCrawler.py                   # Data crawling script
-│   └── logistic_regression.ipynb        # Logistic Regression notebook
+│   │   ├── data_processor.py            # Data loading & preprocessing
+│   │   ├── model_trainer.py             # Model training & evaluation
+│   │   ├── visualizer.py                # Advanced visualizations
+│   │   ├── model_persistence.py         # Model save/load (joblib)
+│   │   ├── model_comparison.py          # Performance comparison
+│   │   ├── medical_error_analysis.py    # Type I/II error analysis
+│   │   └── cap_analysis.py              # CAP analysis for medical safety
+│   └── data_crawler.py                  # UCI data fetching
 │
-├── 🤖 Models/                           # Model storage
-│   ├── Logistic_Regression.pkl
-│   ├── KNN.pkl
-│   ├── SVM_Linear.pkl
+├── 🤖 Models/                           # Trained model files (.joblib + metadata)
+│   ├── KNN_20250720_110419.joblib      # ✅ DEPLOYED MODEL (97.08% accuracy)
+│   ├── KNN_20250720_110419_metadata.json
+│   ├── Random Forest_20250720_110419.joblib
+│   ├── Logistic Regression_20250720_110419.joblib
+│   ├── SVM_Linear_20250720_110419.joblib
+│   ├── SVM_RBF_20250720_110419.joblib
+│   ├── Decision Tree_20250720_110419.joblib
+│   └── Naive Bayes_20250720_110419.joblib
+│
+├── 🌐 api_server/                       # Flask API (local development)
+│   ├── app.py                          # Flask application with scaling fix
+│   ├── requirements.txt                # Dependencies
+│   ├── SETUP_GUIDE.md                 # Local setup instructions
+│   ├── DEPLOY_GUIDE.md                # Deployment guide
+│   └── [Docker & deployment configs...]
+│
+├── 🔧 prediction_tools/                # Testing & prediction utilities
+│   ├── single_prediction_test.py      # Multi-model testing system
+│   ├── knn_cancer_app.py             # KNN-focused prediction app
+│   ├── test_knn.py                   # Quick KNN validation
+│   └── README.md                     # Prediction tools guide
 │   ├── SVM_RBF.pkl
 │   ├── Decision_Tree.pkl
 │   ├── Random_Forest.pkl
@@ -193,23 +265,83 @@ ipywidgets>=7.6.0
 
 ## 💡 Usage
 
-### Quick Start
-1. Open `ml_models_comparison.ipynb`.
-2. Run all cells to view comparison results and visualizations.
-3. Review outputs to select the best model (Random Forest recommended).
+### 🌐 Use Live API (Recommended)
 
-### Usage Example
+**Production API**: https://api-deploy-ml-breastcancer-wisconsin.onrender.com
+
+```bash
+# Health check
+curl https://api-deploy-ml-breastcancer-wisconsin.onrender.com/
+
+# Make prediction
+curl -X POST https://api-deploy-ml-breastcancer-wisconsin.onrender.com/predict \
+  -H "Content-Type: application/json" \
+  -d '{"features": [2, 1, 1, 1, 2, 1, 2, 1, 1]}'
+```
+
+### 📓 Local Development & Training
+
+**Quick Start:**
+1. Open `Codes/ml_models_comparison.ipynb`
+2. Run all cells to train all models and compare performance
+3. Models are automatically saved to `Models/` directory
+
+**Individual Model Training:**
+```bash
+cd Codes
+jupyter notebook knn_neighbours.ipynb         # Train KNN (deployed model)
+jupyter notebook random_forest_classification.ipynb
+jupyter notebook logistic_regression.ipynb
+# ... other model notebooks
+```
+
+### 🔧 Local Prediction Testing
+
+```bash
+cd prediction_tools
+
+# Test KNN model (deployed version)
+python test_knn.py
+
+# Interactive KNN prediction app
+python knn_cancer_app.py
+
+# Multi-model comparison
+python single_prediction_test.py
+```
+
+### 🌐 Local API Server
+
+```bash
+cd api_server
+pip install -r requirements.txt
+python app.py
+# Server: http://localhost:5000
+```
+
+### Usage Example (Python)
 ```python
-# Import modules
-from utils import *
+# Import our utility modules
+from Codes.utils import *
 
 # Load and preprocess data
-dataset, feature_names = load_and_explore_data("../Dataset/breast_cancer_wisconsin.csv")
+dataset, feature_names = load_and_explore_data("Dataset/breast_cancer_wisconsin.csv")
 X_train, X_test, y_train, y_test, scaler = preprocess_data(dataset, feature_names)
 
-# Train and evaluate model
-from sklearn.ensemble import RandomForestClassifier
-model = RandomForestClassifier(n_estimators=100, random_state=0)
+# Train KNN (best performing model)
+from sklearn.neighbors import KNeighborsClassifier
+knn_model = KNeighborsClassifier(n_neighbors=3)
+knn_results = train_and_evaluate_model(knn_model, "KNN", X_train, X_test, y_train, y_test)
+
+# Save model
+save_model(knn_model, knn_results, "KNN", save_dir="Models")
+
+# Make prediction on new data
+new_patient = [[2, 1, 1, 1, 2, 1, 2, 1, 1]]  # Benign case
+new_patient_scaled = scaler.transform(new_patient)
+prediction = knn_model.predict(new_patient_scaled)
+print(f"Prediction: {'Benign' if prediction[0] == 2 else 'Malignant'}")
+```
 results = train_and_evaluate_model(model, "Random Forest", X_train, X_test, y_train, y_test)
 
 # Visualize
@@ -244,25 +376,54 @@ prediction = loaded_model.predict(new_data)
 - **Naive Bayes** has the fastest training time (0.000s).
 - **Logistic Regression** and **SVM** offer high interpretability, suitable for medical environments.
 
-## 🏥 Medical Analysis
+## 🏥 Medical Analysis & Clinical Implications
 
-### Type I vs Type II Errors
-- **Type I (False Positive)**: Misdiagnosing benign as malignant.
-  - **Impact**: Causes anxiety, requires additional tests.
-  - **Lowest Rate**: Random Forest (0.015).
-- **Type II (False Negative)**: Misdiagnosing malignant as benign.
-  - **Impact**: Missing cancer, highly dangerous.
-  - **Lowest Rate**: Random Forest (0.020).
+### 🚨 Error Analysis (Critical for Medical Applications)
 
-### CAP Analysis
-- **Accuracy Ratio**: All models achieve ~1.0 (Excellent).
-- **CAP AUC**: Random Forest highest (81.285).
-- **Clinical Implication**: Random Forest offers the best discriminative ability.
+**KNN Model (Deployed) Error Breakdown:**
+- **Type I Error (False Positive)**: 3/87 = **3.45%**
+  - **Clinical Impact**: Benign tissue misclassified as malignant
+  - **Consequences**: Patient anxiety, unnecessary procedures, additional testing costs
+  - **Acceptable Level**: ✅ Within medical guidelines (<5%)
 
-### Clinical Recommendations
-- **Random Forest**: Safest choice with the lowest Type II Error and highest CAP AUC.
-- **Logistic Regression**: Suitable for clear interpretability for clinicians.
-- **SVM**: Stable with new data, ideal for long-term deployment.
+- **Type II Error (False Negative)**: 1/50 = **2.00%**
+  - **Clinical Impact**: Malignant tissue misclassified as benign
+  - **Consequences**: ⚠️ **CRITICAL** - Delayed treatment, disease progression
+  - **Benchmark**: ✅ Excellent (<3% is considered very good)
+
+### 📊 Medical Performance Metrics
+
+| Metric | KNN (Deployed) | Clinical Significance |
+|--------|----------------|----------------------|
+| **Sensitivity** | 98.00% | Correctly identifies 98% of cancer cases |
+| **Specificity** | 96.55% | Correctly identifies 96.5% of healthy cases |
+| **PPV (Precision)** | 94.23% | 94% of positive predictions are correct |
+| **NPV** | 98.82% | 99% of negative predictions are correct |
+
+### 🎯 Clinical Recommendations
+
+1. **KNN Model Deployment**: ✅ **Recommended for clinical use**
+   - Excellent balance of sensitivity/specificity
+   - Low Type II error rate (critical for cancer detection)
+   - Fast prediction time suitable for real-time diagnosis
+
+2. **Usage Guidelines**:
+   - Use as **screening tool** with expert physician review
+   - **Always combine** with clinical examination and other tests
+   - Consider biopsy for borderline cases (confidence < 85%)
+
+3. **Risk Mitigation**:
+   - Implement **confidence thresholds** (API provides confidence scores)
+   - **Flag low-confidence predictions** for additional testing
+   - Regular model retraining with new data
+
+### 🔍 API Safety Features
+
+The deployed API includes medical safety considerations:
+- **Confidence scoring** for all predictions
+- **Medical disclaimers** in all responses
+- **Risk level assessment** (Low/High)
+- **Recommendation guidance** for healthcare providers
 
 ## 🔧 Customization
 

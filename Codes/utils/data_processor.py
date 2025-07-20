@@ -32,7 +32,7 @@ def load_and_explore_data(file_path):
     print("Dataset Information:")
     print("=" * 40)
     print(f"Dataset shape: {dataset.shape}")
-    print(f"Number of features: {dataset.shape[1] - 2}")  # Excluding sample code and target
+    print(f"Number of features: {dataset.shape[1] - 1}")  # Excluding target only
     print(f"Number of samples: {dataset.shape[0]}")
 
     # Display basic information
@@ -63,7 +63,7 @@ def load_and_explore_data(file_path):
     print(f"Balance ratio: {target_counts.min() / target_counts.max():.3f}")
 
     # Feature names
-    feature_names = dataset.columns[1:-1].tolist()  # Exclude sample code and target
+    feature_names = dataset.columns[:-1].tolist()  # Exclude only target column
     print(f"\nFeature names ({len(feature_names)} features):")
     print("=" * 40)
     for i, name in enumerate(feature_names, 1):
@@ -119,9 +119,9 @@ def preprocess_data(dataset, feature_names, test_size=0.2, random_state=0):
     # Declare features and dependent variables (giống y hệt code từ các file con)
     print("\nDeclaring features and dependent variables...")
     print("=" * 50)
-    print("On the features, remove the 'Sample code number' because it is not relevant to the prediction")
+    print("On the features, include all medical features for prediction")
 
-    X = dataset.iloc[:,1:-1].values
+    X = dataset.iloc[:,:-1].values
     y = dataset.iloc[:, -1].values
 
     print(f"Features (X) shape: {X.shape}")
