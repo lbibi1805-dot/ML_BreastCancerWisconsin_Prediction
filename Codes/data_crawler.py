@@ -14,6 +14,3 @@ df = pd.concat([X, y], axis=1)
 # Lưu thành file CSV (có encoding để đọc tốt với Excel)
 df.to_csv('../Dataset/breast_cancer_wisconsin.csv', index=False, encoding='utf-8-sig')
 
-# (Tuỳ chọn) In thông tin metadata và biến
-# print(breast_cancer_wisconsin_original.metadata) 
-# print(breast_cancer_wisconsin_original.variables) 
